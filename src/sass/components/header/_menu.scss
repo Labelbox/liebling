@@ -34,9 +34,11 @@
 }
 
 // CENTER HEADER OPTIONS
-div.m-menu.js-menu > div > div {
-  display: flex;
-  justify-content: center;
+@include respond-to('medium') {
+  div.m-menu.js-menu > div > div {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .m-menu__main {

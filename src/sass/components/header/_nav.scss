@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 1em;
   }
 }
 
@@ -28,19 +29,22 @@
       font-size: 1.125rem;
       margin-bottom: 15px;
       height: 40px;
-      display: flex;
-      align-items: center;
 
       @include respond-to('medium') {
         margin-bottom: 0;
         margin-right: 35px;
         position: relative;
+        display: flex;
+        align-items: center;
       }
 
       &#logo-li {
         position: absolute;
-        left: 0em;
+        left: 1em;
         top: 0;
+        @include respond-to('extra-large') {
+          left: 0;
+        }
 
         img {
           height: 40px;

@@ -46,6 +46,11 @@
   flex-shrink: 0;
   border-top: 1px solid #dee2e6;
   padding-top: 30px;
+  display: none;
+
+  @include respond-to('large') {
+    display: block;
+  }
 }
 
 /* Footer - Search Icon Hidden

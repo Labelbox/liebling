@@ -187,6 +187,18 @@
   }
 }
 
+.m-featured-article__excerpt {
+  color: $white;
+  margin: 0;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  font-size: 1rem;
+
+  @include respond-to('medium') {
+    max-width: 80%;
+  }
+}
+
 .m-featured-article__timestamp {
   display: flex;
   align-items: center;

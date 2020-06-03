@@ -1,3 +1,8 @@
+## to build zip file, follow directions here: https://github.com/eddiesigner/liebling/wiki/Theme-development-with-Docker
+
+simply go to src/ folder, npm install and then npm run production
+
+
 # Liebling
 
 Liebling is a beautiful and clean Ghost theme that is easy and comfortable to use. **It's free** and you can use it for any kind of content you might have. Now with dark mode 🌓!

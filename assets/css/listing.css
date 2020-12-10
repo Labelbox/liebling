@@ -1,0 +1,43 @@
+/** Mixins */
+.l-grid {
+  padding-bottom: 20px;
+}
+@media only screen and (min-width: 48rem) {
+  .l-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+}
+@media only screen and (min-width: 80rem) {
+  .l-grid {
+    margin: 0 -20px;
+  }
+}
+@media only screen and (min-width: 48rem) {
+  .l-grid.centered {
+    justify-content: center;
+  }
+}
+
+.m-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 40px;
+}
+
+.m-pagination__text {
+  display: inline-block;
+  color: #535F69;
+  letter-spacing: 0.2px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 24px;
+}
+@media only screen and (min-width: 48rem) {
+  .m-pagination__text {
+    letter-spacing: 0.3px;
+    font-size: 1rem;
+  }
+}

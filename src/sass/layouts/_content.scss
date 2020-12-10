@@ -1,0 +1,7 @@
+.l-content {
+    margin-top: 130px;
+    padding: 40px 0 20px;
+    @include respond-to('medium') {
+        padding: 40px 0 40px;
+    }
+}

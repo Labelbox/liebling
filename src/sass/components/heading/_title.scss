@@ -1,0 +1,28 @@
+.m-heading__title {
+    color: $textPrimary;
+    line-height: 1.3;
+    font-size: 1.750rem;
+    margin: 0 0 10px;
+    @include respond-to('medium') {
+        letter-spacing: 0.5px;
+        font-size: 34px;
+        line-height: 40px;
+        margin-bottom: 16px;
+        font-weight: 400;
+    }
+    &.in-post {
+        letter-spacing: 0.5px;
+        font-size: 2rem;
+        margin-bottom: 15px;
+        @include respond-to('medium') {
+            letter-spacing: 0.7px;
+            font-size: 34px;
+            line-height: 40px;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+    }
+    &.in-page {
+        margin: 0;
+    }
+}

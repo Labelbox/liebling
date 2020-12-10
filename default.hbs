@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+
+<head>
+  {{!-- Document Settings --}}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  {{!-- Base Meta --}}
+  <title>{{meta_title}}</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {{!-- Preload assets --}}
+  <link rel="preload" href="{{asset "css/app.css"}}" as="style" />
+  <link rel="preload" href="{{asset "js/manifest.js"}}" as="script" />
+  <link rel="preload" href="{{asset "js/vendor/content-api.min.js"}}" as="script" />
+  <link rel="preload" href="{{asset "js/vendor.js"}}" as="script" />
+  <link rel="preload" href="{{asset "js/app.js"}}" as="script" />
+  <link rel="preconnect" href="https://polyfill.io">
+  <link rel="dns-prefetch" href="https://polyfill.io">
+
+  {{!-- This #block helper will try to preload page-specific assets --}}
+  {{{block "preload"}}}
+
+  {{!-- Styles & Scripts --}}
+  <style>
+    /* These font-faces are here to make fonts work if the Ghost instance is installed in a subdirectory */
+
+    /* source-sans-pro-regular */
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: local('Source Sans Pro Regular'),
+      local('SourceSansPro-Regular'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-regular.woff2'}}") format('woff2'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-regular.woff'}}") format('woff');
+    }
+
+    /* source-sans-pro-600 */
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: local('Source Sans Pro SemiBold'),
+      local('SourceSansPro-SemiBold'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-600.woff2'}}") format('woff2'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-600.woff'}}") format('woff');
+    }
+
+    /* source-sans-pro-700 */
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: local('Source Sans Pro Bold'),
+      local('SourceSansPro-Bold'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-700.woff2'}}") format('woff2'),
+      url("{{asset 'fonts/source-sans-pro/source-sans-pro-700.woff'}}") format('woff');
+    }
+
+    /* iconmoon */
+    @font-face {
+      font-family: 'icomoon';
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      src: url("{{asset 'fonts/icomoon/icomoon.eot?aoz2mo'}}");
+      src: url("{{asset 'fonts/icomoon/icomoon.eot?aoz2mo#iefix'}}") format('embedded-opentype'),
+      url("{{asset 'fonts/icomoon/icomoon.ttf?aoz2mo'}}") format('truetype'),
+      url("{{asset 'fonts/icomoon/icomoon.woff?aoz2mo'}}") format('woff'),
+      url("{{asset 'fonts/icomoon/icomoon.svg?aoz2mo#icomoon'}}") format('svg');
+    }
+
+
+    /* ibm-plex-sans-300 - latin */
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 300;
+      src: url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Sans Light'),
+      local('IBMPlexSans-Light'),
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-300.svg#IBMPlexSans'}}") format('svg');
+      /* Legacy iOS */
+    }
+
+
+    /* ibm-plex-sans-regular - latin */
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 400;
+      src: url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Sans'),
+      local('IBMPlexSans'),
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-regular.svg#IBMPlexSans'}}") format('svg');
+      /* Legacy iOS */
+    }
+
+
+    /* ibm-plex-sans-500 - latin */
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 500;
+      src: url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Sans Medium'),
+      local('IBMPlexSans-Medium'),
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-500.svg#IBMPlexSans'}}") format('svg');
+      /* Legacy iOS */
+    }
+
+
+    /* ibm-plex-sans-600 - latin */
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 600;
+      src: url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Sans SemiBold'),
+      local('IBMPlexSans-SemiBold'),
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-600.svg#IBMPlexSans'}}") format('svg');
+      /* Legacy iOS */
+    }
+
+
+    /* ibm-plex-sans-700 - latin */
+
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 700;
+      src: url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Sans Bold'),
+      local('IBMPlexSans-Bold'),
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-sans/ibm-plex-sans-v8-latin-700.svg#IBMPlexSans'}}") format('svg');
+      /* Legacy iOS */
+    }
+
+    /* ibm-plex-mono-regular - latin */
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 400;
+      src: url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Mono'),
+      local('IBMPlexMono'),
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-regular.svg#IBMPlexMono'}}") format('svg');
+      /* Legacy iOS */
+
+    }
+
+    /* ibm-plex-mono-italic - latin */
+    @font-face {
+      font-family: 'IBM Plex Mono';
+      font-style: italic;
+      font-display: swap;
+      font-weight: 400;
+      src: url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.eot'}}");
+      /* IE9 Compat Modes */
+      src: local('IBM Plex Mono Italic'),
+      local('IBMPlexMono-Italic'),
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.eot?#iefix'}}") format('embedded-opentype'),
+      /* IE6-IE8 */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.woff2'}}") format('woff2'),
+      /* Super Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.woff'}}") format('woff'),
+      /* Modern Browsers */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.ttf'}}") format('truetype'),
+      /* Safari, Android, iOS */
+      url("{{asset 'fonts/ibm-plex-mono/ibm-plex-mono-v6-latin-italic.svg#IBMPlexMono'}}") format('svg');
+      /* Legacy iOS */
+
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="{{asset "css/app.css"}}" media="screen" />
+
+  {{!-- This #block helper will inject a stylesheet for a specific page --}}
+  {{{block "styles"}}}
+
+  {{!-- This #block helper will pull data from the hero partial 
+    to inject styles of the hero image to make it responsive --}}
+  {{{block "herobackground"}}}
+
+  {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+  {{ghost_head}}
+  
+  <link rel="apple-touch-icon" sizes="180x180" href={{asset "/favicon/apple-touch-icon.png"}}>
+  <link rel="icon" type="image/png" sizes="32x32" href={{asset "/favicon/favicon-32x32.png"}}>
+  <link rel="icon" type="image/png" sizes="16x16" href={{asset "/favicon/favicon-16x16.png"}}>
+  <link rel="manifest" href={{asset "/favicon/site.webmanifest"}}>
+  <link rel="mask-icon" href={{asset "/favicon/safari-pinned-tab.svg" color="#5bbad5"}}>
+  <link rel="shortcut icon" href={{asset "/favicon/favicon.ico"}}>
+  <meta name="msapplication-config" content={{asset "/favicon/browserconfig.xml"}}>
+
+  {{!-- This variable is used to make the search form work --}}
+  <script>
+    // @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+    const ghostHost = "{{@site.url}}"
+      // @license-end
+  </script>
+</head>
+
+<body class="{{body_class}}">
+  {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+  {{{body}}}
+
+  {{!-- Search form --}}
+  {{> search}}
+
+  {{!-- The footer --}}
+  {{> footer}}
+
+  {{!-- Notifications alerts --}}
+  {{#if @labs.members}}
+  {{> "notifications"}}
+  {{/if}}
+
+  {{!-- Common scripts shared between pages --}}
+  <script crossorigin="anonymous"
+    src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver%2CPromise%2CArray.prototype.includes%2CString.prototype.endsWith%2CString.prototype.startsWith%2CObject.assign%2CNodeList.prototype.forEach"></script>
+  <script defer src="{{asset "js/manifest.js"}}"></script>
+  <script defer src="{{asset "js/vendor/content-api.min.js"}}"></script>
+  <script defer src="{{asset "js/vendor.js"}}"></script>
+  <script defer src="{{asset "js/app.js"}}"></script>
+
+  {{!-- The #block helper will pull in data from the #contentFor other template files --}}
+  {{{block "scripts"}}}
+
+  {{!-- Ghost outputs important scripts and data with this tag --}}
+  {{ghost_foot}}
+</body>
+
+</html>

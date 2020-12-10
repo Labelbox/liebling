@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  ghost:
+    image: ghost:3.32.1
+    container_name: ghost
+    volumes:
+      - ./..:/var/lib/ghost/content/themes/liebling:Z
+      - ./ghost.db:/var/lib/ghost/content/data/ghost.db:Z
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 2368:2368

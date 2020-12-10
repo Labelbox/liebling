@@ -1,0 +1,43 @@
+.m-heading {
+    margin: 0 auto 40px;
+    @include respond-to('medium') {
+        margin-bottom: 60px;
+    }
+    &.in-subscribe-page {
+        @include respond-to('medium') {
+            margin-bottom: 50px;
+        }
+    }
+    &.no-margin {
+        margin-bottom: 0 !important;
+    }
+}
+
+.lb-post-meta {
+    color: $gray500;
+    font-size: 18px;
+    font-family: "IBM Plex Mono";
+    line-height: 21px;
+    margin-bottom: 40px;
+    >* {
+        display: inline-block;
+    }
+    .info {
+        margin-left: 20px;
+    }
+    .featured {
+        font-weight: 700;
+    }
+    .anchor,
+    .text {
+        color: $textGray;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .anchor:hover {
+        color: $primary;
+    }
+}

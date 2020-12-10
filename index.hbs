@@ -1,0 +1,101 @@
+{{!--
+This template is used for the index page.
+It can be used also as the home page or the default page.
+--}}
+
+{{!-- This block preloads specific assets for the index page --}}
+{{#contentFor "preload"}}
+  <link rel="preload" href="{{asset "css/home.css"}}" as="style" />
+  <link rel="preload" href="{{asset "css/listing.css"}}" as="style" />
+  <link rel="preload" href="{{asset "js/home.js"}}" as="script" />
+{{/contentFor}}
+
+{{!-- This block loads specific styles for the index page --}}
+{{#contentFor "styles"}}
+  <link rel="stylesheet" type="text/css" href="{{asset "css/home.css"}}" media="screen" />
+  <link rel="stylesheet" type="text/css" href="{{asset "css/listing.css"}}" media="screen" />
+{{/contentFor}}
+
+{{!-- The tag below means: insert everything in this file
+into the {body} of the default.hbs template --}}
+{{!< default}}
+
+{{!-- Special header.hbs partial to generate the <header> tag --}}
+{{> header background=@site.cover_image}}
+
+<main class="main-wrap">
+  {{!-- Inject styles of the hero image to make it responsive --}}
+  
+  </section>
+  <div class="l-content">
+    <div class="l-wrapper" data-aos="fade-up" data-aos-delay="300">
+      <div class="l-grid centered">
+        {{#get "posts" filter="featured:true" include="authors,tags" limit="5" as |featured|}}
+          {{#if featured}}
+            <div class="m-featured-slider glide js-featured-slider">
+              <div class="glide__track" data-glide-el="track">
+                <div class="m-featured-slider__list glide__slides">
+                  {{#foreach featured}}
+                    <div class="m-featured-slider__list__item glide__slide js-featured-slide">
+                      <article class="m-featured-article {{#unless feature_image}}no-picture{{/unless}}">
+                        <div class="m-featured-article__picture">
+                          {{#if feature_image}}
+                            <style>
+                              #featured-bg-{{id}} {
+                                background-image: url({{img_url feature_image size='l'}});
+                              }
+                            </style>
+                            <div id="featured-bg-{{id}}"></div>
+                          {{/if}}
+                        </div>
+                        
+                        <a href="{{url}}">
+                          <div class="m-featured-article__content">
+                            <div class='lb-featured-article__meta'>
+                              <div>
+                                <span class="icon-star"></span>
+                                <span class="featured">{{t "Featured"}}</span>
+                              </div>
+                              <div class="info">
+                                <span class='text'>{{primary_author.name}}</span>
+                                <span class="text">&nbsp;|&nbsp;&nbsp;{{date published_at timeago="true"}}&nbsp;|&nbsp;</span>
+                                <span class="text">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+                              </div>
+                            </div>
+                            <h2 class="m-featured-article__title js-featured-article-title -line-clamp-2" title="{{title}}">
+                              {{title}}
+                            </h2>
+                            {{#if excerpt}}
+                              <p class='-line-clamp-2 -big'>{{ excerpt }}</p>
+                            {{/if}}
+                          </div> 
+                        </a>
+                      </article>
+                    </div>
+                  {{/foreach}}
+                </div>
+              </div>
+              <div data-glide-el="controls" class="glide__arrows js-featured-slider-controls">
+                <button data-glide-dir="<" class="m-icon-button in-featured-articles glide-prev js-featured-slider-previous" aria-label="{{t "Previous"}}">
+                  <span class="icon-arrow-left" aria-hidden="true"></span>
+                </button>
+                <button data-glide-dir=">" class="m-icon-button in-featured-articles glide-next js-featured-slider-next" aria-label="{{t "Next"}}">
+                  <span class="icon-arrow-right" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          {{/if}}
+        {{/get}}
+        {{!-- The tag below iterates over all the posts --}}
+        {{> "loop"}}
+      </div>
+    </div>
+    {{!-- Links to Previous/Next posts --}}
+    {{pagination}}
+  </div>
+</main>
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+  <script defer src="{{asset "js/home.js"}}"></script>
+{{/contentFor}}
